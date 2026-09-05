@@ -48,3 +48,7 @@ Rule: work top to bottom. Mark `[x]` when done. Next unchecked item is the next 
 ## Notes / decisions
 - (Claude Code appends decisions, credentials locations, and gotchas here)
 - 2026-09-05: Site is hosted on the DO droplet with nginx behind Cloudflare, not Netlify.
+- 2026-09-05: Droplet public IP: 159.203.71.179. nginx server block: /etc/nginx/sites-available/truehomequote (symlinked into sites-enabled). Port 80 only, truehomequote.com + www. Logs: /var/log/nginx/truehomequote.{access,error}.log.
+- 2026-09-05: nginx runs as www-data and /root is mode 700, so the repo is bind-mounted at /var/www/truehomequote (fstab entry + systemd mount unit) and nginx's root points there. Same directory as ~/truehomequote, edits are live. GOTCHA: deleting files under /var/www/truehomequote deletes them from the repo.
+- 2026-09-05: nginx returns 404 for dotfiles (incl. .git), PLAN.md, netlify.toml, README.md so repo internals are never served.
+- 2026-09-05: Cloudflare: A records for @ and www -> 159.203.71.179, proxied. SSL/TLS mode must be Flexible (origin is HTTP-only); Full (strict) will fail until a Cloudflare Origin CA cert is installed on the droplet. Enable Always Use HTTPS in Cloudflare. No certbot for this domain.
