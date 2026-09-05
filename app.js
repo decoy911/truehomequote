@@ -6,7 +6,7 @@
 /* ==================== CONFIG ==================== */
 // n8n webhook that receives the lead as JSON (PLAN item 9).
 // Leave empty to run the funnel without POSTing; the payload is logged to the console instead.
-const WEBHOOK_URL = '';
+const WEBHOOK_URL = 'https://n8n.dv8solutions.com/webhook/thq-lead-intake-b929d851'; // n8n 'THQ - Lead Intake' (MAKPGV26l9ZOFMEb)
 const FORM_VERSION = 'funnel-v1';
 const CONSENT_VERSION = 'tcpa-2026-09-05b';
 const REQUEST_TIMEOUT_MS = 8000;

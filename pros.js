@@ -4,7 +4,7 @@
 /* ==================== CONFIG ==================== */
 // Second n8n webhook, separate from the homeowner funnel's WEBHOOK_URL in app.js.
 // Leave empty to log the payload to the console instead of POSTing.
-const PROS_WEBHOOK_URL = '';
+const PROS_WEBHOOK_URL = 'https://n8n.dv8solutions.com/webhook/thq-pro-inquiry-3c6f950b'; // n8n 'THQ - Pro Inquiry' (nTc3JyBuTg6qiMDo)
 const PROS_FORM_VERSION = 'pros-v1';
 const PROS_REQUEST_TIMEOUT_MS = 8000;
 
