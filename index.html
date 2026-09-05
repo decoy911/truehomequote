@@ -3,30 +3,129 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TrueHomeQuote — coming soon</title>
-  <style>
-    html, body { height: 100%; margin: 0; }
-    body {
-      display: flex; flex-direction: column;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      background: #f8fafc; color: #0f172a; text-align: center;
-    }
-    main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
-    h1 { font-size: 2rem; font-weight: 600; margin: 0 0 .5rem; }
-    p { color: #475569; margin: 0; }
-    footer { padding: 1rem 1.5rem 1.5rem; font-size: .875rem; color: #475569; }
-    footer a { color: #475569; text-decoration: underline; margin: 0 .5rem; }
-    footer p { margin-top: .5rem; }
-  </style>
+  <title>TrueHomeQuote — Pool, HVAC &amp; Solar Cost Estimates</title>
+  <meta name="description" content="Answer a few quick questions to get an instant cost estimate and quotes from up to 4 licensed local pros for pool, HVAC, and solar projects.">
+  <meta name="theme-color" content="#f8fafc">
+  <link rel="canonical" href="https://truehomequote.com/">
+  <link rel="stylesheet" href="/styles.css?v=20260905">
+  <script src="/app.js?v=20260905" defer></script>
 </head>
 <body>
-  <main>
-    <div>
-      <h1>TrueHomeQuote — coming soon</h1>
-      <p>A DV8 Solutions LLC project.</p>
+  <header class="site-header">
+    <a class="brand" href="/">TrueHomeQuote</a>
+    <a class="pros-link" href="/pros">For Pros</a>
+  </header>
+
+  <main id="app">
+    <noscript><p class="note">Please enable JavaScript to get your estimate.</p></noscript>
+
+    <div class="progress-wrap" id="progress-wrap">
+      <div class="progress" id="progress" role="progressbar" aria-label="Progress" aria-valuemin="1" aria-valuemax="7" aria-valuenow="1"><div class="bar" id="progress-bar"></div></div>
+      <p class="step-label" id="step-label">Step 1 of 7</p>
     </div>
+    <button type="button" class="back hidden" id="back-btn">&larr; Back</button>
+
+    <!-- 1. Service -->
+    <section class="screen active" id="s-vertical">
+      <h1 class="q">What do you need help with?</h1>
+      <div class="choices" id="choices-vertical"></div>
+    </section>
+
+    <!-- 2. Job type -->
+    <section class="screen" id="s-job">
+      <h1 class="q" id="q-job">What do you need done?</h1>
+      <div class="choices" id="choices-job"></div>
+    </section>
+
+    <!-- 3. Qualifier -->
+    <section class="screen" id="s-qual">
+      <h1 class="q" id="q-qual"></h1>
+      <div class="choices" id="choices-qual"></div>
+    </section>
+
+    <!-- 4. Budget -->
+    <section class="screen" id="s-budget">
+      <h1 class="q" id="q-budget">What's your budget?</h1>
+      <div class="choices" id="choices-budget"></div>
+    </section>
+
+    <!-- 5. Ownership -->
+    <section class="screen" id="s-owner">
+      <h1 class="q">Do you own this home?</h1>
+      <div class="choices" id="choices-owner"></div>
+      <div class="note hidden" id="renter-note">
+        <p>No problem. Some pros also work with renters and property managers. Continue if you're authorized to get quotes for this home.</p>
+        <button type="button" class="btn primary" id="renter-continue">Continue</button>
+      </div>
+    </section>
+
+    <!-- 6. ZIP -->
+    <section class="screen" id="s-zip">
+      <h1 class="q">What's your ZIP code?</h1>
+      <p class="sub">We'll match you with pros who serve your area.</p>
+      <form id="zip-form" novalidate>
+        <div class="field">
+          <label for="zip" class="sr-only">ZIP code</label>
+          <input id="zip" name="zip" inputmode="numeric" pattern="[0-9]*" maxlength="5" autocomplete="postal-code" placeholder="ZIP code" required>
+          <p class="error" id="zip-error" aria-live="polite"></p>
+        </div>
+        <button type="submit" class="btn primary">Continue</button>
+      </form>
+    </section>
+
+    <!-- 7. Contact -->
+    <section class="screen" id="s-contact">
+      <h1 class="q">Where should your quotes go?</h1>
+      <form id="contact-form" novalidate>
+        <div class="row">
+          <div class="field">
+            <label for="first-name">First name</label>
+            <input id="first-name" name="first_name" autocomplete="given-name" required>
+            <p class="error" id="first-name-error" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="last-name">Last name</label>
+            <input id="last-name" name="last_name" autocomplete="family-name" required>
+            <p class="error" id="last-name-error" aria-live="polite"></p>
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" inputmode="email" autocomplete="email" required>
+          <p class="error" id="email-error" aria-live="polite"></p>
+        </div>
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(555) 555-5555" required>
+          <p class="error" id="phone-error" aria-live="polite"></p>
+        </div>
+        <p class="consent" id="consent-text">By clicking &ldquo;Submit&rdquo;, you provide your express written consent for TrueHomeQuote (operated by DV8 Solutions LLC) and up to four home-service partners to contact you about your project at the phone number and email address you provided, including by autodialed and prerecorded calls and text messages (SMS), even if your number is on a federal, state, or company Do Not Call list. Consent is not a condition of purchase. Message and data rates may apply; message frequency varies; reply STOP to opt out of texts or HELP for help. See our <a href="/privacy.html" target="_blank" rel="noopener">Privacy Policy</a> and <a href="/terms.html" target="_blank" rel="noopener">Terms of Service</a>.</p>
+        <button type="submit" class="btn primary" id="submit-btn">Submit</button>
+      </form>
+    </section>
+
+    <!-- 8. Thank you -->
+    <section class="screen" id="s-thanks">
+      <h1 class="q" id="thanks-title">Thanks! Here's your estimate</h1>
+      <div class="estimate">
+        <p class="for" id="estimate-for"></p>
+        <p class="range" id="estimate-range"></p>
+        <p class="fine" id="estimate-note"></p>
+      </div>
+      <p class="lead">Up to 4 licensed pros near <strong id="thanks-zip"></strong> will contact you shortly.</p>
+      <p class="fine">Estimates are informational only and not a quote. See our <a href="/terms.html">Terms of Service</a>.</p>
+
+      <!--
+        PARTNER SLOT (PLAN item 12)
+        Insert the approved lead network's form embed or tracking pixel inside #partner-slot.
+        It is intentionally empty today. The lead has already been POSTed to WEBHOOK_URL
+        (app.js) before this screen renders.
+      -->
+      <div id="partner-slot"></div>
+    </section>
   </main>
-  <footer>
+
+  <footer class="site-footer">
     <a href="/privacy.html">Privacy Policy</a>
     <a href="/terms.html">Terms of Service</a>
     <a href="/privacy.html#do-not-sell">Do Not Sell or Share My Personal Information</a>
