@@ -12,7 +12,7 @@ Rule: work top to bottom. Mark `[x]` when done. Next unchecked item is the next 
 ## Phase 1 — Foundation
 - [x] 1. Pick site name, buy .com
 - [ ] 2. (Optional) File Arizona trade name under DV8 Solutions LLC
-- [ ] 3. Create GitHub repo; create Netlify site linked to repo; point domain at Netlify
+- [x] 3. Create GitHub repo; create Netlify site linked to repo; point domain at Netlify
 - [ ] 4. Write Privacy Policy, Terms, and TCPA consent sentence for the form
 
 ## Phase 2 — Build (Claude Code)
