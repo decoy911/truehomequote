@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /thank-you
+Disallow: /thank-you.html
+Disallow: /ads.html
+Disallow: /design-source/
+
+Sitemap: https://truehomequote.com/sitemap.xml

@@ -449,11 +449,17 @@ function bindEvents() {
 /* ==================== INIT ==================== */
 function init() {
   restoreState();
+  // Deep link from the cost guides (/?vertical=pool#quote): pre-select the trade and open on the job-type step.
+  // Only on a fresh landing (no history state), so reloads and back/forward keep their position.
+  const pre = new URLSearchParams(location.search).get('vertical');
+  const preselect = Object.prototype.hasOwnProperty.call(VERTICALS, pre) && !history.state;
+  if (preselect && state.vertical !== pre) { state = Object.assign({}, EMPTY_STATE, { vertical: pre, verticalLabel: VERTICALS[pre].label }); saveState(); }
   const hs = history.state && Number(history.state.step);
   let step = 1;
   if (hs && hs >= 1 && hs <= TOTAL_STEPS) step = Math.min(hs, firstIncompleteStep());
   history.replaceState({ step }, '');
   bindEvents();
   render(step);
+  if (preselect) { goTo(2); $('quote').scrollIntoView(); }
 }
 init();

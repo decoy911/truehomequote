@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>For Pros — Pool, HVAC &amp; Solar Leads by ZIP Code | TrueHomeQuote</title>
+  <meta name="description" content="Direct homeowner leads in your ZIP codes for pool, HVAC, and solar. Homeowners complete our estimate tool; you get the lead by email and text in seconds. Pay per lead, no contract.">
+  <meta name="theme-color" content="#FBF7F1">
+  <link rel="canonical" href="https://truehomequote.com/pros">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css?v=20260905d">
+  <script src="/pros.js?v=20260905d" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="/">
+        <span class="mark" style="width:32px;height:32px;background:#0E7C86">
+  <span style="position:absolute;left:9px;top:17px;width:9px;height:4px;border-radius:2px;background:#fff;transform:rotate(45deg)"></span>
+  <span style="position:absolute;left:13px;top:13px;width:13px;height:4px;border-radius:2px;background:#fff;transform:rotate(-48deg)"></span>
+  <span style="position:absolute;right:-1px;top:-1px;width:11px;height:11px;border-radius:50%;background:#F2A33C;border:2px solid #FBF7F1"></span>
+</span>
+        <span>TrueHomeQuote</span>
+      </a>
+      <a class="pros-link" href="/">For Homeowners</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero page-hero">
+      <span class="blob blob-teal" aria-hidden="true"></span>
+      <span class="blob blob-amber" aria-hidden="true"></span>
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="dots" aria-hidden="true"><i></i><i></i></span> For Pros</p>
+          <h1 class="hero-h1">Direct homeowner leads in <em>your</em> ZIP codes for pool, HVAC, and solar.</h1>
+          <p class="hero-sub">Every lead is a homeowner who just finished our estimate tool: they picked the job, the size, a budget range, and asked to hear from pros. The lead is delivered to your email and phone within seconds of submission.</p>
+          <ul class="chips">
+            <li><span class="chip-dot teal"></span>Pay per lead</li>
+            <li><span class="chip-dot amber"></span>No contract, no minimums</li>
+            <li><span class="chip-dot ink"></span>Email + text in seconds</li>
+          </ul>
+          <dl class="stats">
+            <div><dt>6</dt><dd>questions answered before you ever get the lead</dd></div>
+            <div><dt>4</dt><dd>pros max per homeowner &mdash; a short list, not a blast</dd></div>
+            <div><dt>$0</dt><dd>setup fee or monthly charge</dd></div>
+          </dl>
+        </div>
+
+        <div class="hero-card">
+          <div class="card" id="pros-form-wrap">
+            <div class="card-body pros-form" id="request">
+              <h2>Request lead pricing</h2>
+              <p class="sub">Tell us where you work and we'll send current per-lead rates for your ZIPs. Usually same business day.</p>
+              <form id="pros-form" novalidate>
+                <div class="field">
+                  <label for="company">Company name</label>
+                  <input id="company" name="company_name" autocomplete="organization" required>
+                  <p class="error" id="company-error" aria-live="polite"></p>
+                </div>
+                <div class="field">
+                  <label for="contact">Contact name</label>
+                  <input id="contact" name="contact_name" autocomplete="name" required>
+                  <p class="error" id="contact-error" aria-live="polite"></p>
+                </div>
+                <div class="row">
+                  <div class="field">
+                    <label for="pro-email">Email</label>
+                    <input id="pro-email" name="email" type="email" inputmode="email" autocomplete="email" required>
+                    <p class="error" id="pro-email-error" aria-live="polite"></p>
+                  </div>
+                  <div class="field">
+                    <label for="pro-phone">Phone</label>
+                    <input id="pro-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(555) 555-5555" required>
+                    <p class="error" id="pro-phone-error" aria-live="polite"></p>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="service">Service type</label>
+                  <select id="service" name="service_type" required>
+                    <option value="">Choose one&hellip;</option>
+                    <option value="pool">Pool (cleaning, repair, resurfacing)</option>
+                    <option value="hvac">HVAC (repair, replacement, install)</option>
+                    <option value="solar">Solar</option>
+                    <option value="multiple">More than one of these</option>
+                  </select>
+                  <p class="error" id="service-error" aria-live="polite"></p>
+                </div>
+                <div class="field">
+                  <label for="zips">ZIP codes wanted</label>
+                  <textarea id="zips" name="zips" inputmode="numeric" placeholder="85251, 85254, 85260&hellip;" required></textarea>
+                  <p class="hint">Paste as many as you like, separated by commas or spaces.</p>
+                  <p class="error" id="zips-error" aria-live="polite"></p>
+                </div>
+                <div class="sr-only" aria-hidden="true">
+                  <label for="website">Website</label>
+                  <input id="website" name="website" tabindex="-1" autocomplete="off">
+                </div>
+                <button type="submit" class="btn ink" id="pros-submit">Request lead pricing</button>
+                <p class="form-status" id="pros-status" aria-live="polite"></p>
+                <p class="reassure">No contract. We'll only use this to send you pricing.</p>
+              </form>
+            </div>
+          </div>
+          <div class="card form-done hidden" id="pros-done" tabindex="-1">
+            <h2>Got it. We'll be in touch shortly.</h2>
+            <p>We'll email current per-lead rates for your ZIP codes and service type, plus how to get started. Questions in the meantime? Write to <a href="mailto:hello@truehomequote.com">hello@truehomequote.com</a>.</p>
+          </div>
+          <p class="card-foot">Prefer email? <a href="mailto:hello@truehomequote.com">hello@truehomequote.com</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="how">
+      <div class="wrap">
+        <p class="eyebrow light">How it works</p>
+        <h2 class="how-h2">Homeowners qualify themselves. You just answer the phone.</h2>
+        <div class="how-grid">
+          <article><span class="num teal">01</span><h3>A homeowner completes our estimate tool</h3><p>They choose the trade, the job, the size, a budget range, whether they own the home, and their ZIP. Then they enter their name, phone, and email and agree to be contacted.</p></article>
+          <article><span class="num amber">02</span><h3>The lead hits your inbox and phone in seconds</h3><p>Email and text, with every answer and the contact details. No dashboard to log into, no daily digest. Call while they're still thinking about the project.</p></article>
+          <article><span class="num white">03</span><h3>Pay per lead, no contract</h3><p>A flat price per lead for your trade. No setup fee, no monthly minimum, no term. Pause or change your ZIPs whenever you want.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-body">
+      <div class="wrap">
+        <div class="prose">
+          <h2>What's in every lead</h2>
+          <p>Each lead is a real submission from our funnel, not a scraped list. Here is what you get with every one:</p>
+        </div>
+        <ul class="lead-fields">
+          <li><span class="chip-dot teal"></span>Homeowner name</li>
+          <li><span class="chip-dot teal"></span>Phone number</li>
+          <li><span class="chip-dot teal"></span>Email address</li>
+          <li><span class="chip-dot teal"></span>ZIP code</li>
+          <li><span class="chip-dot amber"></span>Trade and job type</li>
+          <li><span class="chip-dot amber"></span>Job size (pool gallons, home sq ft, or electric bill)</li>
+          <li><span class="chip-dot amber"></span>Budget range they selected</li>
+          <li><span class="chip-dot amber"></span>Own vs. rent</li>
+          <li><span class="chip-dot ink"></span>Timestamp and consent record</li>
+        </ul>
+
+        <div class="prose" style="margin-top:36px">
+          <h2>Lead pricing</h2>
+          <p>Pricing is a flat rate per lead by trade and job type. We are finalizing launch rates now, so request pricing above and we'll send the current numbers for your ZIPs.</p>
+        </div>
+        <!-- PRICING PLACEHOLDER: replace "TBD" with launch per-lead rates. Keep one row per trade/job type. -->
+        <div class="table-wrap">
+          <table class="data">
+            <thead><tr><th scope="col">Trade</th><th scope="col">Lead type</th><th scope="col">Price per lead</th></tr></thead>
+            <tbody>
+              <tr><td>Pool</td><td>Cleaning (recurring service)</td><td class="num">TBD</td></tr>
+              <tr><td>Pool</td><td>Repair</td><td class="num">TBD</td></tr>
+              <tr><td>Pool</td><td>Resurfacing</td><td class="num">TBD</td></tr>
+              <tr><td>HVAC</td><td>Repair</td><td class="num">TBD</td></tr>
+              <tr><td>HVAC</td><td>Replacement or new install</td><td class="num">TBD</td></tr>
+              <tr><td>Solar</td><td>Installer quotes</td><td class="num">TBD</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="prose">
+          <p>Each homeowner is matched with a small number of pros in their ZIP, never more than four, so you're competing with a short list. Billing is per lead delivered. You can start, pause, or change ZIPs at any time with no contract or cancellation fee.</p>
+          <h2>Questions?</h2>
+          <p class="contact-line"><strong>Contact us:</strong> <a href="mailto:hello@truehomequote.com">hello@truehomequote.com</a>. We reply to pro inquiries within one business day.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <nav class="footer-links">
+        <a href="/cost/">Cost Guides</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/privacy.html#do-not-sell">Do Not Sell or Share My Personal Information</a>
+      </nav>
+      <p>&copy; 2026 DV8 Solutions LLC</p>
+    </div>
+  </footer>
+</body>
+</html>
