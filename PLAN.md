@@ -13,7 +13,7 @@ Rule: work top to bottom. Mark `[x]` when done. Next unchecked item is the next 
 - [x] 1. Pick site name, buy .com
 - [x] 2. (Optional) File Arizona trade name under DV8 Solutions LLC — skipped 2026-09-05
 - [x] 3. Cloudflare DNS pointed at droplet, nginx block live
-- [ ] 4. Write Privacy Policy, Terms, and TCPA consent sentence for the form
+- [x] 4. Write Privacy Policy, Terms, and TCPA consent sentence for the form
 
 ## Phase 2 — Build (Claude Code)
 - [ ] 5. Button-flow funnel: service → job type → qualifier → budget → own/rent → zip → contact form (mobile first)
