@@ -8,7 +8,7 @@
 // Leave empty to run the funnel without POSTing; the payload is logged to the console instead.
 const WEBHOOK_URL = '';
 const FORM_VERSION = 'funnel-v1';
-const CONSENT_VERSION = 'tcpa-2026-09-05';
+const CONSENT_VERSION = 'tcpa-2026-09-05b';
 const REQUEST_TIMEOUT_MS = 8000;
 const THANK_YOU_URL = '/thank-you';
 const LEAD_KEY = 'thq_lead'; // sessionStorage key read by thank-you.html

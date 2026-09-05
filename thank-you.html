@@ -5,30 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Your Estimate — TrueHomeQuote</title>
   <meta name="robots" content="noindex">
-  <meta name="theme-color" content="#f8fafc">
-  <link rel="stylesheet" href="/styles.css?v=20260905b">
+  <meta name="theme-color" content="#FBF7F1">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260905c">
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="/">TrueHomeQuote</a>
-    <a class="pros-link" href="/pros">For Pros</a>
+    <div class="wrap header-inner">
+      <a class="brand" href="/">
+        <span class="mark" style="width:32px;height:32px;background:#0E7C86">
+  <span style="position:absolute;left:9px;top:17px;width:9px;height:4px;border-radius:2px;background:#fff;transform:rotate(45deg)"></span>
+  <span style="position:absolute;left:13px;top:13px;width:13px;height:4px;border-radius:2px;background:#fff;transform:rotate(-48deg)"></span>
+  <span style="position:absolute;right:-1px;top:-1px;width:11px;height:11px;border-radius:50%;background:#F2A33C;border:2px solid #FBF7F1"></span>
+</span>
+        <span>TrueHomeQuote</span>
+      </a>
+      <a class="pros-link" href="/pros">For Pros</a>
+    </div>
   </header>
 
   <main id="app">
     <noscript><p class="note">Please enable JavaScript to see your estimate.</p></noscript>
 
-    <!-- Shown when a lead was just submitted (data handed over in sessionStorage by app.js) -->
-    <section class="screen" id="s-result">
-      <h1 class="q" id="thanks-title">Thanks! Here's your estimate</h1>
+    <section class="screen result" id="s-result">
+      <h1 class="q" id="thanks-title">You're set. Here's your range.</h1>
       <div class="estimate">
         <p class="for" id="estimate-for"></p>
         <p class="range" id="estimate-range"></p>
         <p class="fine" id="estimate-note"></p>
       </div>
-      <p class="lead">Up to 4 licensed pros near <strong id="thanks-zip"></strong> will contact you shortly.</p>
-      <div class="note">
-        <p><strong>What happens next</strong></p>
-        <p>Expect calls or texts within the hour, often sooner. Have your questions ready: ask about licensing and insurance, what's included in the price, and how soon they can start.</p>
+      <div class="steps">
+        <div>
+          <span class="n">1</span>
+          <p><strong>Up to 4 pros near <span id="thanks-zip"></span></strong> get your project. Expect calls or texts within the hour.</p>
+        </div>
+        <div>
+          <span class="n">2</span>
+          <p><strong>Ask the three questions:</strong> license and insurance, what's included, earliest start date.</p>
+        </div>
       </div>
       <p class="fine">Estimates are informational only and not a quote. See our <a href="/terms.html">Terms of Service</a>.</p>
 
@@ -42,19 +58,22 @@
       <div id="partner-slot"></div>
     </section>
 
-    <!-- Shown when there is no lead data (direct visit, new tab, or expired session) -->
-    <section class="screen" id="s-empty">
+    <section class="screen result" id="s-empty">
       <h1 class="q">Looking for your estimate?</h1>
       <p class="sub">We couldn't find a recent request in this browser. It takes about a minute to get one.</p>
-      <a class="btn primary" href="/">Get my estimate</a>
+      <a class="btn primary inline" href="/">Get my estimate &rarr;</a>
     </section>
   </main>
 
   <footer class="site-footer">
-    <a href="/privacy.html">Privacy Policy</a>
-    <a href="/terms.html">Terms of Service</a>
-    <a href="/privacy.html#do-not-sell">Do Not Sell or Share My Personal Information</a>
-    <p>&copy; 2026 DV8 Solutions LLC</p>
+    <div class="wrap footer-inner">
+      <nav class="footer-links">
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/privacy.html#do-not-sell">Do Not Sell or Share My Personal Information</a>
+      </nav>
+      <p>&copy; 2026 DV8 Solutions LLC</p>
+    </div>
   </footer>
 
   <script>
@@ -70,7 +89,7 @@
       return;
     }
 
-    $('thanks-title').textContent = 'Thanks' + (lead.first_name ? ', ' + lead.first_name : '') + "! Here's your estimate";
+    $('thanks-title').textContent = "You're set" + (lead.first_name ? ', ' + lead.first_name : '') + ". Here's your range.";
     $('estimate-for').textContent = [lead.vertical_label, lead.job_type_label, lead.qualifier_label].filter(Boolean).join(' · ');
     $('estimate-range').textContent = lead.estimate_text || 'Estimate unavailable';
     $('estimate-note').textContent = lead.estimate_note || '';
