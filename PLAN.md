@@ -21,7 +21,7 @@ Rule: work top to bottom. Mark `[x]` when done. Next unchecked item is the next 
 - [x] 7. "For Pros" page (exclusive leads, Stripe link) + 3–5 cost info pages per vertical — built 2026-09-05 without the exclusivity claim (see item 24) or a Stripe link; six cost guides (3 pool, 2 HVAC, 1 solar)
 - [x] 8. NocoDB Leads table: all funnel fields + source, campaign, consent text, timestamp, IP, network, status, payout — done 2026-09-05 (base "TrueHomeQuote": Leads + ProInquiries)
 - [x] 9. n8n workflow: webhook → NocoDB write → confirmation email to homeowner — done 2026-09-05 ("THQ - Lead Intake" + "THQ - Pro Inquiry", both active, end-to-end tested)
-- [ ] 10. Deploy; test full flow on phone end to end
+- [x] 10. Deploy; test full flow on phone end to end — confirmed by Coy 2026-09-05
 
 ## Phase 3 — Buyers
 - [ ] 11. Apply as affiliate/publisher: Networx, Modernize, + 1–2 smaller networks
