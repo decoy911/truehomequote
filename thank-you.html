@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Estimate — TrueHomeQuote</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#f8fafc">
+  <link rel="stylesheet" href="/styles.css?v=20260905b">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">TrueHomeQuote</a>
+    <a class="pros-link" href="/pros">For Pros</a>
+  </header>
+
+  <main id="app">
+    <noscript><p class="note">Please enable JavaScript to see your estimate.</p></noscript>
+
+    <!-- Shown when a lead was just submitted (data handed over in sessionStorage by app.js) -->
+    <section class="screen" id="s-result">
+      <h1 class="q" id="thanks-title">Thanks! Here's your estimate</h1>
+      <div class="estimate">
+        <p class="for" id="estimate-for"></p>
+        <p class="range" id="estimate-range"></p>
+        <p class="fine" id="estimate-note"></p>
+      </div>
+      <p class="lead">Up to 4 licensed pros near <strong id="thanks-zip"></strong> will contact you shortly.</p>
+      <div class="note">
+        <p><strong>What happens next</strong></p>
+        <p>Expect calls or texts within the hour, often sooner. Have your questions ready: ask about licensing and insurance, what's included in the price, and how soon they can start.</p>
+      </div>
+      <p class="fine">Estimates are informational only and not a quote. See our <a href="/terms.html">Terms of Service</a>.</p>
+
+      <!--
+        PARTNER SLOT (PLAN item 12)
+        Insert the approved lead network's form embed or tracking pixel inside #partner-slot.
+        It is intentionally empty today. The lead has already been POSTed to WEBHOOK_URL
+        (app.js) before this page loads. Lead details are available in
+        sessionStorage under "thq_lead" if the partner snippet needs them.
+      -->
+      <div id="partner-slot"></div>
+    </section>
+
+    <!-- Shown when there is no lead data (direct visit, new tab, or expired session) -->
+    <section class="screen" id="s-empty">
+      <h1 class="q">Looking for your estimate?</h1>
+      <p class="sub">We couldn't find a recent request in this browser. It takes about a minute to get one.</p>
+      <a class="btn primary" href="/">Get my estimate</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href="/terms.html">Terms of Service</a>
+    <a href="/privacy.html#do-not-sell">Do Not Sell or Share My Personal Information</a>
+    <p>&copy; 2026 DV8 Solutions LLC</p>
+  </footer>
+
+  <script>
+  (function () {
+    'use strict';
+    var LEAD_KEY = 'thq_lead';
+    var $ = function (id) { return document.getElementById(id); };
+    var lead = null;
+    try { lead = JSON.parse(sessionStorage.getItem(LEAD_KEY) || 'null'); } catch (e) { lead = null; }
+
+    if (!lead || !lead.zip) {
+      $('s-empty').classList.add('active');
+      return;
+    }
+
+    $('thanks-title').textContent = 'Thanks' + (lead.first_name ? ', ' + lead.first_name : '') + "! Here's your estimate";
+    $('estimate-for').textContent = [lead.vertical_label, lead.job_type_label, lead.qualifier_label].filter(Boolean).join(' · ');
+    $('estimate-range').textContent = lead.estimate_text || 'Estimate unavailable';
+    $('estimate-note').textContent = lead.estimate_note || '';
+    $('thanks-zip').textContent = lead.zip;
+    $('s-result').classList.add('active');
+
+    // Google Ads / GTM conversion hook (PLAN item 13). Fires once per submission;
+    // a reload of this page does not re-fire it. No PII goes into the dataLayer.
+    if (!lead.fired) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'lead_submitted',
+        vertical: lead.vertical,
+        job_type: lead.job_type,
+        qualifier: lead.qualifier,
+        budget: lead.budget,
+        owns_home: lead.owns_home,
+        zip: lead.zip,
+        lead_sent: !!lead.lead_sent
+      });
+      lead.fired = true;
+      try { sessionStorage.setItem(LEAD_KEY, JSON.stringify(lead)); } catch (e) { /* ignore */ }
+    }
+  })();
+  </script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 /* TrueHomeQuote lead funnel. Vanilla JS, no dependencies.
-   Screens: service -> job type -> qualifier -> budget -> own/rent -> zip -> contact -> thank-you */
+   Screens: service -> job type -> qualifier -> budget -> own/rent -> zip -> contact,
+   then redirect to /thank-you (thank-you.html) with the result in sessionStorage. */
 'use strict';
 
 /* ==================== CONFIG ==================== */
@@ -9,9 +10,10 @@ const WEBHOOK_URL = '';
 const FORM_VERSION = 'funnel-v1';
 const CONSENT_VERSION = 'tcpa-2026-09-05';
 const REQUEST_TIMEOUT_MS = 8000;
+const THANK_YOU_URL = '/thank-you';
+const LEAD_KEY = 'thq_lead'; // sessionStorage key read by thank-you.html
 const TOTAL_STEPS = 7;
-const THANKS = TOTAL_STEPS + 1;
-const STEP_IDS = { 1: 's-vertical', 2: 's-job', 3: 's-qual', 4: 's-budget', 5: 's-owner', 6: 's-zip', 7: 's-contact', 8: 's-thanks' };
+const STEP_IDS = { 1: 's-vertical', 2: 's-job', 3: 's-qual', 4: 's-budget', 5: 's-owner', 6: 's-zip', 7: 's-contact' };
 
 /* ==================== FUNNEL DATA ==================== */
 // jobs / qualifiers: [key, label] pairs in display order.
@@ -187,22 +189,18 @@ function prepareStep(step) {
 }
 
 function render(step) {
-  if (step > 1 && step <= TOTAL_STEPS) step = Math.min(step, firstIncompleteStep());
+  step = Math.max(1, Math.min(step, TOTAL_STEPS, firstIncompleteStep()));
   currentStep = step;
-  if (step !== THANKS) prepareStep(step);
+  prepareStep(step);
 
   document.querySelectorAll('.screen').forEach((s) => s.classList.remove('active'));
   const screen = $(STEP_IDS[step]);
   screen.classList.add('active');
 
-  const isThanks = step === THANKS;
-  $('progress-wrap').classList.toggle('hidden', isThanks);
-  $('back-btn').classList.toggle('hidden', step === 1 || isThanks);
-  if (!isThanks) {
-    $('progress-bar').style.width = Math.round((step / TOTAL_STEPS) * 100) + '%';
-    $('progress').setAttribute('aria-valuenow', String(step));
-    $('step-label').textContent = 'Step ' + step + ' of ' + TOTAL_STEPS;
-  }
+  $('back-btn').classList.toggle('hidden', step === 1);
+  $('progress-bar').style.width = Math.round((step / TOTAL_STEPS) * 100) + '%';
+  $('progress').setAttribute('aria-valuenow', String(step));
+  $('step-label').textContent = 'Step ' + step + ' of ' + TOTAL_STEPS;
 
   window.scrollTo(0, 0);
   const focusTarget = step === 6 ? $('zip') : step === 7 ? $('first-name') : screen.querySelector('h1');
@@ -287,15 +285,31 @@ function getEstimate() {
 }
 function money(n) { return '$' + n.toLocaleString('en-US'); }
 
-function showThanks() {
-  const v = VERTICALS[state.vertical];
+// Hand the result to /thank-you. That page renders the estimate and fires the
+// lead_submitted dataLayer event exactly once (it flips `fired` after doing so).
+function storeLeadForThankYou(payload, result) {
   const est = getEstimate();
-  $('thanks-title').textContent = 'Thanks' + (state.firstName ? ', ' + state.firstName : '') + "! Here's your estimate";
-  $('estimate-for').textContent = v.label + ' · ' + state.jobTypeLabel + ' · ' + state.qualifierLabel;
-  $('estimate-range').textContent = est ? money(est.low) + ' – ' + money(est.high) + est.unit : 'Estimate unavailable';
-  $('estimate-note').textContent = est ? est.note : '';
-  $('thanks-zip').textContent = state.zip;
-  goTo(THANKS);
+  const lead = {
+    vertical: payload.vertical,
+    vertical_label: payload.vertical_label,
+    job_type: payload.job_type,
+    job_type_label: payload.job_type_label,
+    qualifier: payload.qualifier,
+    qualifier_label: payload.qualifier_label,
+    budget: payload.budget,
+    owns_home: payload.owns_home,
+    zip: payload.zip,
+    first_name: payload.first_name,
+    estimate_low: est ? est.low : null,
+    estimate_high: est ? est.high : null,
+    estimate_unit: est ? est.unit : '',
+    estimate_text: est ? money(est.low) + ' – ' + money(est.high) + est.unit : '',
+    estimate_note: est ? est.note : '',
+    lead_sent: !!result.sent,
+    submitted_at: new Date().toISOString(),
+    fired: false,
+  };
+  try { sessionStorage.setItem(LEAD_KEY, JSON.stringify(lead)); } catch (e) { /* ignore */ }
 }
 
 /* ==================== SUBMISSION ==================== */
@@ -367,21 +381,6 @@ async function sendLead(payload) {
   }
 }
 
-// Google Ads / GTM hook (PLAN item 13). No PII goes into the dataLayer.
-function pushDataLayer(payload, result) {
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event: 'lead_submitted',
-    vertical: payload.vertical,
-    job_type: payload.job_type,
-    qualifier: payload.qualifier,
-    budget: payload.budget,
-    owns_home: payload.owns_home,
-    zip: payload.zip,
-    lead_sent: !!result.sent,
-  });
-}
-
 /* ==================== EVENTS ==================== */
 function bindEvents() {
   $('back-btn').addEventListener('click', () => {
@@ -391,8 +390,12 @@ function bindEvents() {
 
   window.addEventListener('popstate', (e) => {
     if (submitted) { resetState(); history.replaceState({ step: 1 }, ''); render(1); return; }
-    const s = (e.state && Number(e.state.step)) || 1;
-    render(s === THANKS ? 1 : s);
+    render((e.state && Number(e.state.step)) || 1);
+  });
+
+  // Coming back from /thank-you via the bfcache: start a fresh funnel instead of re-showing the filled form.
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted && submitted) { resetState(); history.replaceState({ step: 1 }, ''); render(1); }
   });
 
   $('renter-continue').addEventListener('click', () => goTo(6));
@@ -430,11 +433,12 @@ function bindEvents() {
     try {
       const payload = buildPayload();
       const result = await sendLead(payload);
-      pushDataLayer(payload, result);
+      storeLeadForThankYou(payload, result);
       submitted = true;
       try { sessionStorage.removeItem('thq_state'); } catch (e2) { /* ignore */ }
-      showThanks();
-    } finally {
+      location.assign(THANK_YOU_URL); // button stays disabled while the browser navigates
+    } catch (err) {
+      console.error('[TrueHomeQuote] submit failed', err);
       btn.disabled = false;
       btn.textContent = 'Submit';
       submitting = false;

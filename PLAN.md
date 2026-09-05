@@ -17,7 +17,7 @@ Rule: work top to bottom. Mark `[x]` when done. Next unchecked item is the next 
 
 ## Phase 2 — Build (Claude Code)
 - [x] 5. Button-flow funnel: service → job type → qualifier → budget → own/rent → zip → contact form (mobile first)
-- [ ] 6. Thank-you page showing the homeowner's price range
+- [x] 6. Thank-you page showing the homeowner's price range
 - [ ] 7. "For Pros" page (exclusive leads, Stripe link) + 3–5 cost info pages per vertical
 - [ ] 8. NocoDB Leads table: all funnel fields + source, campaign, consent text, timestamp, IP, network, status, payout
 - [ ] 9. n8n workflow: webhook → NocoDB write → confirmation email to homeowner

@@ -7,8 +7,8 @@
   <meta name="description" content="Answer a few quick questions to get an instant cost estimate and quotes from up to 4 licensed local pros for pool, HVAC, and solar projects.">
   <meta name="theme-color" content="#f8fafc">
   <link rel="canonical" href="https://truehomequote.com/">
-  <link rel="stylesheet" href="/styles.css?v=20260905">
-  <script src="/app.js?v=20260905" defer></script>
+  <link rel="stylesheet" href="/styles.css?v=20260905b">
+  <script src="/app.js?v=20260905b" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -102,26 +102,6 @@
         <p class="consent" id="consent-text">By clicking &ldquo;Submit&rdquo;, you provide your express written consent for TrueHomeQuote (operated by DV8 Solutions LLC) and up to four home-service partners to contact you about your project at the phone number and email address you provided, including by autodialed and prerecorded calls and text messages (SMS), even if your number is on a federal, state, or company Do Not Call list. Consent is not a condition of purchase. Message and data rates may apply; message frequency varies; reply STOP to opt out of texts or HELP for help. See our <a href="/privacy.html" target="_blank" rel="noopener">Privacy Policy</a> and <a href="/terms.html" target="_blank" rel="noopener">Terms of Service</a>.</p>
         <button type="submit" class="btn primary" id="submit-btn">Submit</button>
       </form>
-    </section>
-
-    <!-- 8. Thank you -->
-    <section class="screen" id="s-thanks">
-      <h1 class="q" id="thanks-title">Thanks! Here's your estimate</h1>
-      <div class="estimate">
-        <p class="for" id="estimate-for"></p>
-        <p class="range" id="estimate-range"></p>
-        <p class="fine" id="estimate-note"></p>
-      </div>
-      <p class="lead">Up to 4 licensed pros near <strong id="thanks-zip"></strong> will contact you shortly.</p>
-      <p class="fine">Estimates are informational only and not a quote. See our <a href="/terms.html">Terms of Service</a>.</p>
-
-      <!--
-        PARTNER SLOT (PLAN item 12)
-        Insert the approved lead network's form embed or tracking pixel inside #partner-slot.
-        It is intentionally empty today. The lead has already been POSTed to WEBHOOK_URL
-        (app.js) before this screen renders.
-      -->
-      <div id="partner-slot"></div>
     </section>
   </main>
 
