@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#FBF7F1; color:#0B1B2B; font-family:"Plus Jakarta Sans",system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  a { color:#0E7C86; text-decoration:none; }
+  a:hover { color:#0B1B2B; text-decoration:underline; }
+  input, button { font-family:inherit; }
+  input:focus-visible, button:focus-visible { outline:3px solid rgba(14,124,134,.35); outline-offset:2px; }
+  @keyframes thqUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+  @keyframes thqPop { 0% { opacity:0; transform:scale(.94); } 60% { transform:scale(1.02); } 100% { opacity:1; transform:scale(1); } }
+  @keyframes thqDrift { from { transform:translateY(0); } to { transform:translateY(-14px); } }
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden">
+
+  <header style="position:sticky;top:0;z-index:20;background:rgba(251,247,241,.88);backdrop-filter:blur(10px);border-bottom:1px solid rgba(11,27,43,.08)">
+    <div style="max-width:1120px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px">
+      <a href="#top" style="display:flex;align-items:center;gap:10px;color:#0B1B2B;text-decoration:none">
+        <span style="position:relative;display:block;width:32px;height:32px;flex:none;border-radius:50%;background:#0E7C86">
+          <span style="position:absolute;left:8px;top:17px;width:9px;height:4px;border-radius:2px;background:#fff;transform:rotate(45deg)"></span>
+          <span style="position:absolute;left:13px;top:13px;width:13px;height:4px;border-radius:2px;background:#fff;transform:rotate(-48deg)"></span>
+          <span style="position:absolute;right:-1px;top:-1px;width:11px;height:11px;border-radius:50%;background:#F2A33C;border:2px solid #FBF7F1"></span>
+        </span>
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:19px;letter-spacing:-.02em">TrueHomeQuote</span>
+      </a>
+      <div style="display:flex;align-items:center;gap:8px">
+        <a href="#pros" style="display:inline-flex;align-items:center;min-height:38px;padding:0 14px;border-radius:999px;border:1.5px solid rgba(11,27,43,.14);color:#0B1B2B;font-size:13px;font-weight:600;background:#fff" style-hover="border-color:#0B1B2B">For Pros</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" style="flex:1">
+
+    <section style="position:relative;padding:clamp(28px,5vw,64px) 20px clamp(40px,6vw,80px)">
+      <span style="position:absolute;top:-80px;right:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(14,124,134,.16),rgba(14,124,134,0) 70%);pointer-events:none"></span>
+      <span style="position:absolute;bottom:-40px;left:-140px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle at 60% 40%,rgba(242,163,60,.22),rgba(242,163,60,0) 70%);pointer-events:none"></span>
+
+      <div style="position:relative;max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(28px,4vw,56px);align-items:start">
+
+        <div style="min-width:0;animation:thqUp .5s ease both">
+          <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 8px;border-radius:999px;background:#fff;border:1px solid rgba(11,27,43,.1);font-size:12.5px;font-weight:600;letter-spacing:.01em;color:#0B1B2B">
+            <span style="display:inline-flex;align-items:center;gap:4px">
+              <span style="width:8px;height:8px;border-radius:50%;background:#0E7C86"></span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#F2A33C"></span>
+            </span>
+            Pool &middot; HVAC &middot; Solar
+          </div>
+          <h1 style="margin:18px 0 0;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(36px,5.6vw,60px);line-height:1.02;letter-spacing:-.03em;text-wrap:balance">
+            Know the real price<br><span style="color:#0E7C86">before</span> the first sales call.
+          </h1>
+          <p style="margin:20px 0 0;max-width:30em;font-size:clamp(16px,1.6vw,19px);line-height:1.6;color:#41556A;text-wrap:pretty">
+            Six taps. No phone tag. You get a straight cost range for your project &mdash; then up to four licensed pros who actually work your ZIP code.
+          </p>
+
+          <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:24px">
+            <span style="display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:12px;background:#fff;border:1px solid rgba(11,27,43,.1);font-size:13.5px;font-weight:600">
+              <span style="width:9px;height:9px;border-radius:50%;background:#0E7C86"></span>Free, no obligation
+            </span>
+            <span style="display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:12px;background:#fff;border:1px solid rgba(11,27,43,.1);font-size:13.5px;font-weight:600">
+              <span style="width:9px;height:9px;border-radius:50%;background:#F2A33C"></span>Licensed &amp; insured only
+            </span>
+            <span style="display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:12px;background:#fff;border:1px solid rgba(11,27,43,.1);font-size:13.5px;font-weight:600">
+              <span style="width:9px;height:9px;border-radius:50%;background:#0B1B2B"></span>Under 60 seconds
+            </span>
+          </div>
+
+          <sc-if value="{{ showStats }}" hint-placeholder-val="{{ true }}">
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:32px;padding-top:26px;border-top:1px solid rgba(11,27,43,.1);max-width:460px">
+            <div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px;letter-spacing:-.02em;font-variant-numeric:tabular-nums">4</div>
+              <div style="font-size:12.5px;line-height:1.35;color:#5A6B7B;font-weight:500">quotes, max &mdash; never a call-center list</div>
+            </div>
+            <div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px;letter-spacing:-.02em;font-variant-numeric:tabular-nums">3</div>
+              <div style="font-size:12.5px;line-height:1.35;color:#5A6B7B;font-weight:500">trades covered, more coming</div>
+            </div>
+            <div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px;letter-spacing:-.02em;font-variant-numeric:tabular-nums">$0</div>
+              <div style="font-size:12.5px;line-height:1.35;color:#5A6B7B;font-weight:500">to homeowners, always</div>
+            </div>
+          </div>
+          </sc-if>
+        </div>
+
+        <div id="quote" style="min-width:0;animation:thqUp .5s .08s ease both">
+          <div style="position:relative;background:#fff;border:1px solid rgba(11,27,43,.1);border-radius:24px;box-shadow:0 1px 2px rgba(11,27,43,.04),0 18px 44px -18px rgba(11,27,43,.22);overflow:hidden">
+
+            <div style="padding:18px 22px 16px;border-bottom:1px solid rgba(11,27,43,.07);background:linear-gradient(180deg,#F7FBFB,#fff)">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+                <span style="font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#0E7C86">{{ stepLabel }}</span>
+                <span style="font-size:12px;font-weight:600;color:#5A6B7B">{{ pctLabel }}</span>
+              </div>
+              <div style="margin-top:10px;height:8px;border-radius:999px;background:#E7EDEE;overflow:hidden">
+                <div style="height:100%;border-radius:999px;background:linear-gradient(90deg,#0E7C86,#4FB3A5);transition:width .35s cubic-bezier(.2,.8,.2,1);width:{{ pct }}"></div>
+              </div>
+            </div>
+
+            <div style="padding:22px">
+
+              <sc-if value="{{ showBack }}" hint-placeholder-val="{{ false }}">
+                <button type="button" onClick="{{ onBack }}" style="display:inline-flex;align-items:center;gap:7px;min-height:36px;margin:-4px 0 12px -6px;padding:0 8px;border:0;border-radius:8px;background:none;color:#5A6B7B;font-size:14px;font-weight:600;cursor:pointer" style-hover="color:#0B1B2B;background:#F4F1EC">&larr; Back</button>
+              </sc-if>
+
+              <h2 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(22px,2.6vw,27px);line-height:1.15;letter-spacing:-.02em;text-wrap:balance">{{ title }}</h2>
+              <sc-if value="{{ sub }}" hint-placeholder-val="{{ true }}">
+                <p style="margin:8px 0 0;font-size:15px;line-height:1.55;color:#5A6B7B">{{ sub }}</p>
+              </sc-if>
+
+              <sc-if value="{{ showChoices }}" hint-placeholder-val="{{ true }}">
+                <div style="display:grid;gap:10px;margin-top:20px">
+                  <sc-for list="{{ choices }}" as="opt" hint-placeholder-count="3">
+                    <button type="button" onClick="{{ opt.onClick }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:62px;padding:14px 16px;text-align:left;font-size:17px;font-weight:600;color:#0B1B2B;background:{{ opt.bg }};border:2px solid {{ opt.border }};border-radius:14px;cursor:pointer;transition:border-color .15s ease,background .15s ease,transform .12s ease" style-hover="border-color:#0E7C86;transform:translateY(-1px)" style-active="transform:translateY(0)">
+                      <span>{{ opt.label }}</span>
+                      <span style="flex:none;width:22px;height:22px;border-radius:50%;border:2px solid {{ opt.dot }};background:{{ opt.dotFill }}"></span>
+                    </button>
+                  </sc-for>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ showRenterNote }}" hint-placeholder-val="{{ false }}">
+                <div style="margin-top:16px;padding:16px;border-radius:14px;background:#FFF8EC;border:1px solid rgba(242,163,60,.4)">
+                  <p style="margin:0 0 12px;font-size:14.5px;line-height:1.55;color:#41556A">No problem &mdash; plenty of our pros work with renters and property managers. Continue if you're authorized to get quotes for this home.</p>
+                  <button type="button" onClick="{{ onRenterContinue }}" style="width:100%;min-height:52px;border:0;border-radius:12px;background:#0B1B2B;color:#fff;font-size:16px;font-weight:700;cursor:pointer">Continue</button>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ showZip }}" hint-placeholder-val="{{ false }}">
+                <div style="margin-top:20px">
+                  <input value="{{ zipValue }}" onInput="{{ onZipInput }}" onKeyDown="{{ onZipKey }}" inputMode="numeric" maxLength="5" autoComplete="postal-code" placeholder="ZIP code" aria-label="ZIP code" style="width:100%;min-height:58px;padding:14px 16px;font-size:19px;font-weight:600;letter-spacing:.06em;color:#0B1B2B;background:#fff;border:2px solid rgba(11,27,43,.16);border-radius:14px">
+                  <p style="min-height:20px;margin:8px 0 0;font-size:13.5px;font-weight:600;color:#C2410C">{{ zipError }}</p>
+                  <button type="button" onClick="{{ onZipSubmit }}" style="width:100%;min-height:58px;margin-top:6px;border:0;border-radius:14px;background:#0E7C86;color:#fff;font-size:17px;font-weight:700;cursor:pointer;transition:background .15s ease" style-hover="background:#0B6570">See my estimate &rarr;</button>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ showContact }}" hint-placeholder-val="{{ false }}">
+                <div style="margin-top:20px">
+                  <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;margin-bottom:18px;border-radius:14px;background:#F1F8F8;border:1px solid rgba(14,124,134,.22)">
+                    <span style="flex:none;width:34px;height:34px;border-radius:10px;background:#0E7C86;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:15px">$</span>
+                    <span style="font-size:13.5px;line-height:1.4;font-weight:600;color:#0B1B2B">Your range is ready: <span style="color:#0E7C86">{{ estimateText }}</span><br><span style="font-weight:500;color:#5A6B7B">Tell us where to send the pro quotes.</span></span>
+                  </div>
+                  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,140px),1fr));gap:12px">
+                    <label style="display:block">
+                      <span style="display:block;margin-bottom:6px;font-size:13px;font-weight:700">First name</span>
+                      <input value="{{ firstName }}" onInput="{{ onFirst }}" autoComplete="given-name" style="width:100%;min-height:54px;padding:12px 14px;font-size:16px;color:#0B1B2B;background:#fff;border:2px solid rgba(11,27,43,.16);border-radius:12px">
+                      <span style="display:block;min-height:18px;margin-top:5px;font-size:12.5px;font-weight:600;color:#C2410C">{{ firstError }}</span>
+                    </label>
+                    <label style="display:block">
+                      <span style="display:block;margin-bottom:6px;font-size:13px;font-weight:700">Last name</span>
+                      <input value="{{ lastName }}" onInput="{{ onLast }}" autoComplete="family-name" style="width:100%;min-height:54px;padding:12px 14px;font-size:16px;color:#0B1B2B;background:#fff;border:2px solid rgba(11,27,43,.16);border-radius:12px">
+                      <span style="display:block;min-height:18px;margin-top:5px;font-size:12.5px;font-weight:600;color:#C2410C">{{ lastError }}</span>
+                    </label>
+                  </div>
+                  <label style="display:block;margin-top:6px">
+                    <span style="display:block;margin-bottom:6px;font-size:13px;font-weight:700">Email</span>
+                    <input value="{{ email }}" onInput="{{ onEmail }}" type="email" inputMode="email" autoComplete="email" style="width:100%;min-height:54px;padding:12px 14px;font-size:16px;color:#0B1B2B;background:#fff;border:2px solid rgba(11,27,43,.16);border-radius:12px">
+                    <span style="display:block;min-height:18px;margin-top:5px;font-size:12.5px;font-weight:600;color:#C2410C">{{ emailError }}</span>
+                  </label>
+                  <label style="display:block;margin-top:6px">
+                    <span style="display:block;margin-bottom:6px;font-size:13px;font-weight:700">Phone</span>
+                    <input value="{{ phone }}" onInput="{{ onPhone }}" onBlur="{{ onPhoneBlur }}" type="tel" inputMode="tel" autoComplete="tel" placeholder="(555) 555-5555" style="width:100%;min-height:54px;padding:12px 14px;font-size:16px;color:#0B1B2B;background:#fff;border:2px solid rgba(11,27,43,.16);border-radius:12px">
+                    <span style="display:block;min-height:18px;margin-top:5px;font-size:12.5px;font-weight:600;color:#C2410C">{{ phoneError }}</span>
+                  </label>
+                  <p style="margin:12px 0 14px;font-size:11.5px;line-height:1.5;color:#6B7C8C">
+                    By clicking &ldquo;Get my quotes&rdquo;, you provide your express written consent for TrueHomeQuote (operated by DV8 Solutions LLC) and up to four home-service partners to contact you about your project at the phone number and email address you provided, including by autodialed and prerecorded calls and text messages (SMS), even if your number is on a federal, state, or company Do Not Call list. Consent is not a condition of purchase. Message and data rates may apply; message frequency varies; reply STOP to opt out or HELP for help. See our <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms of Service</a>.
+                  </p>
+                  <button type="button" onClick="{{ onSubmit }}" style="width:100%;min-height:60px;border:0;border-radius:14px;background:#0B1B2B;color:#fff;font-size:17px;font-weight:700;cursor:pointer;box-shadow:0 10px 24px -12px rgba(11,27,43,.6);transition:transform .12s ease" style-hover="transform:translateY(-1px)">{{ submitLabel }}</button>
+                  <p style="margin:12px 0 0;text-align:center;font-size:12.5px;font-weight:600;color:#5A6B7B">We never sell your info to spam lists. Four pros, then done.</p>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ showResult }}" hint-placeholder-val="{{ false }}">
+                <div style="margin-top:20px;animation:thqPop .45s ease both">
+                  <div style="padding:24px 20px;border-radius:18px;background:linear-gradient(160deg,#0B1B2B,#12384A);color:#fff;text-align:center">
+                    <p style="margin:0;font-size:12.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#7FD3C8">{{ resultFor }}</p>
+                    <p style="margin:10px 0 0;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(30px,4.6vw,42px);letter-spacing:-.02em;font-variant-numeric:tabular-nums">{{ estimateText }}</p>
+                    <p style="margin:10px auto 0;max-width:30em;font-size:13px;line-height:1.5;color:rgba(255,255,255,.72)">{{ estimateNote }}</p>
+                  </div>
+                  <div style="display:grid;gap:10px;margin-top:16px">
+                    <div style="display:flex;gap:12px;padding:14px 16px;border-radius:14px;background:#F1F8F8;border:1px solid rgba(14,124,134,.22)">
+                      <span style="flex:none;width:26px;height:26px;border-radius:50%;background:#0E7C86;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800">1</span>
+                      <span style="font-size:14.5px;line-height:1.5;color:#41556A"><strong style="color:#0B1B2B">Up to 4 pros near {{ zipValue }}</strong> get your project. Expect calls or texts within the hour.</span>
+                    </div>
+                    <div style="display:flex;gap:12px;padding:14px 16px;border-radius:14px;background:#FFF8EC;border:1px solid rgba(242,163,60,.4)">
+                      <span style="flex:none;width:26px;height:26px;border-radius:50%;background:#F2A33C;color:#0B1B2B;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800">2</span>
+                      <span style="font-size:14.5px;line-height:1.5;color:#41556A"><strong style="color:#0B1B2B">Ask the three questions:</strong> license and insurance, what's included, earliest start date.</span>
+                    </div>
+                  </div>
+                  <button type="button" onClick="{{ onRestart }}" style="width:100%;min-height:52px;margin-top:16px;border:1.5px solid rgba(11,27,43,.16);border-radius:12px;background:#fff;color:#0B1B2B;font-size:15px;font-weight:700;cursor:pointer" style-hover="border-color:#0B1B2B">Price another project</button>
+                  <p style="margin:12px 0 0;font-size:11.5px;line-height:1.5;color:#6B7C8C">Estimates are informational only and not a quote. See our <a href="/terms.html">Terms of Service</a>.</p>
+                </div>
+              </sc-if>
+
+            </div>
+          </div>
+
+          <p style="margin:14px 4px 0;font-size:12.5px;line-height:1.5;color:#6B7C8C;text-align:center">Your answers stay in your browser until you hit submit.</p>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding:clamp(40px,6vw,72px) 20px;background:#0B1B2B;color:#fff">
+      <div style="max-width:1120px;margin:0 auto">
+        <p style="margin:0;font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#7FD3C8">How it works</p>
+        <h2 style="margin:12px 0 0;max-width:22em;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(28px,4vw,42px);line-height:1.08;letter-spacing:-.03em">Three steps, and nobody has to guess a number.</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:18px;margin-top:clamp(28px,4vw,44px)">
+          <div style="padding:24px;border-radius:20px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12)">
+            <span style="display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;background:#0E7C86;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px">01</span>
+            <h3 style="margin:18px 0 8px;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:20px;letter-spacing:-.01em">Tap through six questions</h3>
+            <p style="margin:0;font-size:14.5px;line-height:1.6;color:rgba(255,255,255,.68)">Trade, job, size, budget, ownership, ZIP. No essays, no account, no upload.</p>
+          </div>
+          <div style="padding:24px;border-radius:20px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12)">
+            <span style="display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;background:#F2A33C;color:#0B1B2B;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px">02</span>
+            <h3 style="margin:18px 0 8px;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:20px;letter-spacing:-.01em">See a real range instantly</h3>
+            <p style="margin:0;font-size:14.5px;line-height:1.6;color:rgba(255,255,255,.68)">Built from what jobs like yours actually cost &mdash; so you can spot a padded bid.</p>
+          </div>
+          <div style="padding:24px;border-radius:20px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12)">
+            <span style="display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;background:#fff;color:#0B1B2B;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px">03</span>
+            <h3 style="margin:18px 0 8px;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:20px;letter-spacing:-.01em">Compare four pros, pick one</h3>
+            <p style="margin:0;font-size:14.5px;line-height:1.6;color:rgba(255,255,255,.68)">Licensed, insured, serving your ZIP. Four maximum &mdash; your phone stays sane.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding:clamp(40px,6vw,72px) 20px">
+      <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(24px,4vw,48px);align-items:center">
+        <div style="min-width:0">
+          <h2 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(26px,3.4vw,36px);line-height:1.1;letter-spacing:-.025em;text-wrap:balance">Straight answers on the stuff people actually ask.</h2>
+          <p style="margin:14px 0 0;max-width:34em;font-size:16px;line-height:1.65;color:#41556A">Still deciding? Get the range first &mdash; you can always ignore the calls.</p>
+          <a href="#quote" style="display:inline-flex;align-items:center;min-height:54px;margin-top:22px;padding:0 24px;border-radius:14px;background:#0E7C86;color:#fff;font-size:16px;font-weight:700;text-decoration:none" style-hover="background:#0B6570;color:#fff;text-decoration:none">Start my estimate &rarr;</a>
+        </div>
+        <div style="min-width:0;display:grid;gap:12px">
+          <div style="padding:18px 20px;border-radius:16px;background:#fff;border:1px solid rgba(11,27,43,.1)">
+            <h3 style="margin:0 0 6px;font-size:15.5px;font-weight:700">Is this really free?</h3>
+            <p style="margin:0;font-size:14.5px;line-height:1.6;color:#5A6B7B">Yes. Pros pay us for qualified projects. Homeowners pay nothing, ever.</p>
+          </div>
+          <div style="padding:18px 20px;border-radius:16px;background:#fff;border:1px solid rgba(11,27,43,.1)">
+            <h3 style="margin:0 0 6px;font-size:15.5px;font-weight:700">How many people will call me?</h3>
+            <p style="margin:0;font-size:14.5px;line-height:1.6;color:#5A6B7B">Four at most, and you can tell any of them to stop at any time.</p>
+          </div>
+          <div style="padding:18px 20px;border-radius:16px;background:#fff;border:1px solid rgba(11,27,43,.1)">
+            <h3 style="margin:0 0 6px;font-size:15.5px;font-weight:700">How accurate is the estimate?</h3>
+            <p style="margin:0;font-size:14.5px;line-height:1.6;color:#5A6B7B">It's a typical range for your job size and area &mdash; a sanity check, not a bid. Condition and materials move the final number.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <sc-if value="{{ showProBand }}" hint-placeholder-val="{{ true }}">
+    <section id="pros" style="padding:0 20px clamp(32px,4vw,48px)">
+      <div style="max-width:1120px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:14px 18px;border-radius:14px;background:#fff;border:1px solid rgba(11,27,43,.1)">
+        <span style="flex:none;width:8px;height:8px;border-radius:50%;background:#F2A33C"></span>
+        <p style="margin:0;min-width:0;font-size:14px;line-height:1.5;color:#41556A"><strong style="color:#0B1B2B">Are you a pro?</strong> Direct homeowner leads in your zip codes. Pay per lead, no contract.</p>
+        <a href="/pros" style="margin-left:auto;font-size:14px;font-weight:700;white-space:nowrap">See lead pricing &rarr;</a>
+      </div>
+    </section>
+    </sc-if>
+  </main>
+
+  <footer style="padding:28px 20px 36px;border-top:1px solid rgba(11,27,43,.1)">
+    <div style="max-width:1120px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
+      <div style="display:flex;flex-wrap:wrap;gap:18px;font-size:13px;font-weight:600">
+        <a href="/privacy.html" style="color:#5A6B7B">Privacy Policy</a>
+        <a href="/terms.html" style="color:#5A6B7B">Terms of Service</a>
+        <a href="/privacy.html#do-not-sell" style="color:#5A6B7B">Do Not Sell or Share My Personal Information</a>
+      </div>
+      <p style="margin:0;font-size:13px;color:#6B7C8C">&copy; 2026 DV8 Solutions LLC</p>
+    </div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showStats&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Page sections&quot;},&quot;showProBand&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Page sections&quot;}}">
+const SOLAR_BUDGETS = ['$10,000–20,000', '$20,000–30,000', '$30,000+', 'Not sure'];
+const SOLAR_ESTIMATES = {
+  under100: [10000, 16000], '100to200': [15000, 24000], '200to300': [22000, 32000], over300: [30000, 45000],
+};
+const VERTICALS = {
+  pool: {
+    label: 'Pool', jobQuestion: 'What does your pool need?',
+    jobs: [['cleaning', 'Cleaning'], ['repair', 'Repair'], ['resurfacing', 'Resurfacing']],
+    qualifierQuestion: 'How big is your pool?',
+    qualifiers: [['small', 'Small (under 10,000 gal)'], ['medium', 'Medium (10,000–20,000 gal)'], ['large', 'Large (20,000+ gal)']],
+    budgets: {
+      cleaning: ['$100–200/mo', '$200–300/mo', '$300+/mo', 'Not sure'],
+      repair: ['$400–800', '$800–1,500', '$1,500–3,000', '$3,000+', 'Not sure'],
+      resurfacing: ['$4,000–7,000', '$7,000–10,000', '$10,000–15,000', '$15,000+', 'Not sure'],
+    },
+    estimates: {
+      cleaning: { small: [80, 150, '/mo'], medium: [100, 200, '/mo'], large: [150, 300, '/mo'] },
+      repair: { small: [300, 1200], medium: [400, 1800], large: [500, 2500] },
+      resurfacing: { small: [4000, 7000], medium: [6000, 10000], large: [9000, 15000] },
+    },
+    estimateNote: 'Typical range for this pool size. Condition and materials change the price.',
+  },
+  hvac: {
+    label: 'HVAC', jobQuestion: 'What does your HVAC system need?',
+    jobs: [['repair', 'Repair'], ['replace', 'Replace'], ['install', 'New install']],
+    qualifierQuestion: 'How big is your home?',
+    qualifiers: [['under1500', 'Under 1,500 sq ft'], ['1500to2500', '1,500–2,500 sq ft'], ['over2500', 'Over 2,500 sq ft']],
+    budgets: {
+      repair: ['$150–400', '$400–800', '$800–1,500', '$1,500+', 'Not sure'],
+      replace: ['$4,000–7,000', '$7,000–10,000', '$10,000–15,000', '$15,000+', 'Not sure'],
+      install: ['$6,000–10,000', '$10,000–15,000', '$15,000–25,000', '$25,000+', 'Not sure'],
+    },
+    estimates: {
+      repair: { under1500: [150, 650], '1500to2500': [200, 800], over2500: [250, 1000] },
+      replace: { under1500: [4500, 8000], '1500to2500': [6000, 11000], over2500: [8000, 15000] },
+      install: { under1500: [7000, 12000], '1500to2500': [9000, 16000], over2500: [12000, 22000] },
+    },
+    estimateNote: 'Typical installed range for this home size. Equipment efficiency and ductwork change the price.',
+  },
+  solar: {
+    label: 'Solar', jobQuestion: 'What are you looking for?',
+    jobs: [['quotes', 'Get installer quotes'], ['estimate', 'Just an estimate']],
+    qualifierQuestion: "What's your average monthly electric bill?",
+    qualifiers: [['under100', 'Under $100'], ['100to200', '$100–200'], ['200to300', '$200–300'], ['over300', 'Over $300']],
+    budgets: { quotes: SOLAR_BUDGETS, estimate: SOLAR_BUDGETS },
+    estimates: { quotes: SOLAR_ESTIMATES, estimate: SOLAR_ESTIMATES },
+    estimateNote: 'Typical installed cost before incentives, sized to your bill. Roof, equipment, and utility rates change the price.',
+  },
+};
+const TOTAL = 7;
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const money = (n) => '$' + n.toLocaleString('en-US');
+
+class Component extends DCLogic {
+  state = {
+    step: 1, vertical: null, jobType: null, qualifier: null, budget: null, ownsHome: null,
+    zip: '', zipError: '', renterNote: false, done: false, submitting: false,
+    firstName: '', lastName: '', email: '', phone: '',
+    errors: { first: '', last: '', email: '', phone: '' },
+  };
+
+  v() { return VERTICALS[this.state.vertical]; }
+
+  pick(field, value) {
+    const s = this.state;
+    const patch = { [field]: value };
+    if (field === 'vertical' && s.vertical !== value) { patch.jobType = null; patch.qualifier = null; patch.budget = null; }
+    if (field === 'jobType' && s.jobType !== value) patch.budget = null;
+    if (field === 'ownsHome' && value === 'no') { patch.renterNote = true; this.setState(patch); return; }
+    patch.renterNote = false;
+    patch.step = Math.min(s.step + 1, TOTAL);
+    this.setState(patch);
+  }
+
+  estimate() {
+    const v = this.v();
+    const byJob = v && v.estimates[this.state.jobType];
+    const e = byJob && byJob[this.state.qualifier];
+    if (!e) return null;
+    return { low: e[0], high: e[1], unit: e[2] || '', note: v.estimateNote };
+  }
+  estimateText() {
+    const e = this.estimate();
+    return e ? money(e.low) + ' – ' + money(e.high) + e.unit : '';
+  }
+
+  normalizePhone(raw) {
+    let d = String(raw || '').replace(/\D/g, '');
+    if (d.length === 11 && d[0] === '1') d = d.slice(1);
+    return /^[2-9]\d{2}[2-9]\d{6}$/.test(d) ? d : null;
+  }
+
+  submit() {
+    const s = this.state;
+    const d = this.normalizePhone(s.phone);
+    const errors = {
+      first: s.firstName.trim() ? '' : 'Enter your first name.',
+      last: s.lastName.trim() ? '' : 'Enter your last name.',
+      email: EMAIL_RE.test(s.email.trim()) ? '' : 'Enter a valid email address.',
+      phone: d ? '' : 'Enter a valid 10-digit US phone number.',
+    };
+    if (Object.keys(errors).some((k) => errors[k])) { this.setState({ errors }); return; }
+    this.setState({ errors, submitting: true });
+    setTimeout(() => this.setState({ submitting: false, done: true }), 700);
+  }
+
+  renderVals() {
+    const s = this.state;
+    const v = this.v();
+    const step = s.step;
+    const stepOf = s.done ? TOTAL : step;
+    const pct = Math.round((s.done ? TOTAL : step) / TOTAL * 100);
+
+    let title = '', sub = '', choices = [], mode = 'choices';
+    const opt = (field, value, label) => {
+      const selected = s[field] === value;
+      return {
+        value, label, selected,
+        bg: selected ? '#F1F8F8' : '#fff',
+        border: selected ? '#0E7C86' : 'rgba(11,27,43,.14)',
+        dot: selected ? '#0E7C86' : 'rgba(11,27,43,.18)',
+        dotFill: selected ? '#0E7C86' : 'transparent',
+        onClick: () => this.pick(field, value),
+      };
+    };
+
+    if (s.done) {
+      mode = 'result';
+      title = 'You\'re set' + (s.firstName ? ', ' + s.firstName.trim() : '') + '. Here\'s your range.';
+      sub = '';
+    } else if (step === 1) {
+      title = 'What are we pricing today?';
+      sub = 'Pick a trade to get started.';
+      choices = Object.keys(VERTICALS).map((k) => opt('vertical', k, VERTICALS[k].label));
+    } else if (step === 2) {
+      title = v.jobQuestion; sub = '';
+      choices = v.jobs.map(([k, l]) => opt('jobType', k, l));
+    } else if (step === 3) {
+      title = v.qualifierQuestion; sub = 'Close enough is fine.';
+      choices = v.qualifiers.map(([k, l]) => opt('qualifier', k, l));
+    } else if (step === 4) {
+      const list = v.budgets[s.jobType] || [];
+      title = list.some((b) => b.indexOf('/mo') !== -1) ? "What's your monthly budget?" : "What's your budget for this project?";
+      sub = '"Not sure" is a real answer — it helps pros know where to start.';
+      choices = list.map((b) => opt('budget', b, b));
+    } else if (step === 5) {
+      title = 'Do you own this home?';
+      sub = '';
+      choices = [opt('ownsHome', 'yes', 'Yes'), opt('ownsHome', 'no', 'No')];
+    } else if (step === 6) {
+      mode = 'zip';
+      title = "What's your ZIP code?";
+      sub = "We only match pros who actually work your area.";
+    } else {
+      mode = 'contact';
+      title = 'Where should your quotes go?';
+      sub = '';
+    }
+
+    const setField = (key, errKey) => (e) => {
+      const val = e.target.value;
+      this.setState((st) => ({ [key]: val, errors: Object.assign({}, st.errors, { [errKey]: '' }) }));
+    };
+
+    return {
+      showStats: this.props.showStats ?? true,
+      showProBand: this.props.showProBand ?? true,
+      stepLabel: s.done ? 'Complete' : 'Step ' + step + ' of ' + TOTAL,
+      pctLabel: pct + '% done',
+      pct: pct + '%',
+      title, sub,
+      showBack: !s.done && step > 1,
+      onBack: () => this.setState({ step: Math.max(1, step - 1), renterNote: false }),
+      showChoices: mode === 'choices',
+      showZip: mode === 'zip',
+      showContact: mode === 'contact',
+      showResult: mode === 'result',
+      choices,
+      showRenterNote: mode === 'choices' && step === 5 && s.renterNote,
+      onRenterContinue: () => this.setState({ step: 6, renterNote: false }),
+
+      zipValue: s.zip,
+      zipError: s.zipError,
+      onZipInput: (e) => this.setState({ zip: e.target.value.replace(/\D/g, '').slice(0, 5), zipError: '' }),
+      onZipKey: (e) => { if (e.key === 'Enter') this.zipGo(); },
+      onZipSubmit: () => this.zipGo(),
+
+      firstName: s.firstName, lastName: s.lastName, email: s.email, phone: s.phone,
+      firstError: s.errors.first, lastError: s.errors.last, emailError: s.errors.email, phoneError: s.errors.phone,
+      onFirst: setField('firstName', 'first'),
+      onLast: setField('lastName', 'last'),
+      onEmail: setField('email', 'email'),
+      onPhone: setField('phone', 'phone'),
+      onPhoneBlur: () => {
+        const d = this.normalizePhone(s.phone);
+        if (d) this.setState({ phone: '(' + d.slice(0, 3) + ') ' + d.slice(3, 6) + '-' + d.slice(6) });
+      },
+      submitLabel: s.submitting ? 'Sending…' : 'Get my quotes',
+      onSubmit: () => { if (!s.submitting) this.submit(); },
+
+      estimateText: this.estimateText(),
+      estimateNote: (this.estimate() || {}).note || '',
+      resultFor: [v && v.label, this.jobLabel(), this.qualLabel()].filter(Boolean).join(' · '),
+      onRestart: () => this.setState({
+        step: 1, vertical: null, jobType: null, qualifier: null, budget: null, ownsHome: null,
+        zip: '', zipError: '', done: false, firstName: '', lastName: '', email: '', phone: '',
+        errors: { first: '', last: '', email: '', phone: '' },
+      }),
+    };
+  }
+
+  jobLabel() {
+    const v = this.v();
+    const f = v && v.jobs.find(([k]) => k === this.state.jobType);
+    return f ? f[1] : '';
+  }
+  qualLabel() {
+    const v = this.v();
+    const f = v && v.qualifiers.find(([k]) => k === this.state.qualifier);
+    return f ? f[1] : '';
+  }
+  zipGo() {
+    if (!/^\d{5}$/.test(this.state.zip)) { this.setState({ zipError: 'Enter a 5-digit ZIP code.' }); return; }
+    this.setState({ step: 7, zipError: '' });
+  }
+}
+
+</script>
+</body>
+</html>
