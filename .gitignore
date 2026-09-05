@@ -1,0 +1,24 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Node / build tooling (if added later)
+node_modules/
+dist/
+.cache/
+
+# Netlify
+.netlify/
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
