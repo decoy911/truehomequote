@@ -1,8 +1,8 @@
 # Lead-Gen Site — Master Plan
 
 Owner: DV8 Solutions LLC
-Site name: (fill in)
-Domain: (fill in)
+Site name: TrueHomeQuote
+Domain: truehomequote.com
 Build environment: Claude Code over SSH on DO droplet → GitHub → Netlify
 Backend: n8n + NocoDB on droplet
 Verticals: Pool (first), HVAC (second), Solar (third)
@@ -10,7 +10,7 @@ Verticals: Pool (first), HVAC (second), Solar (third)
 Rule: work top to bottom. Mark `[x]` when done. Next unchecked item is the next step.
 
 ## Phase 1 — Foundation
-- [ ] 1. Pick site name, buy .com
+- [x] 1. Pick site name, buy .com
 - [ ] 2. (Optional) File Arizona trade name under DV8 Solutions LLC
 - [ ] 3. Create GitHub repo; create Netlify site linked to repo; point domain at Netlify
 - [ ] 4. Write Privacy Policy, Terms, and TCPA consent sentence for the form
@@ -47,3 +47,4 @@ Rule: work top to bottom. Mark `[x]` when done. Next unchecked item is the next 
 
 ## Notes / decisions
 - (Claude Code appends decisions, credentials locations, and gotchas here)
+- 2026-09-05: Site is hosted on the DO droplet with nginx behind Cloudflare, not Netlify.
