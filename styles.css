@@ -227,6 +227,8 @@ table.data th, table.data td { padding: 12px 16px; text-align: left; border-bott
 table.data th { font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); background: #F7FBFB; }
 table.data tr:last-child td { border-bottom: 0; }
 table.data td.num { font-weight: 700; color: var(--ink); white-space: nowrap; font-variant-numeric: tabular-nums; }
+table.data a.buy { display: inline-flex; align-items: center; min-height: 34px; padding: 0 14px; border-radius: 999px; background: var(--teal); color: #fff; font-size: 14px; font-weight: 700; }
+table.data a.buy:hover { background: var(--teal-dark); color: #fff; text-decoration: none; }
 .cta-panel { margin: 36px 0 0; padding: 24px; border-radius: 20px; background: linear-gradient(160deg,#0B1B2B,#12384A); color: #fff; }
 .cta-panel h2 { margin: 0; font-family: var(--display); font-weight: 800; font-size: clamp(22px,3vw,30px); line-height: 1.1; letter-spacing: -.02em; }
 .cta-panel p { margin: 10px 0 0; max-width: 34em; font-size: 15px; line-height: 1.6; color: rgba(255,255,255,.75); }
