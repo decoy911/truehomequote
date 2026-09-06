@@ -129,7 +129,7 @@ function init() {
       status.classList.add('err');
     } finally {
       btn.disabled = false;
-      btn.textContent = 'Request lead pricing';
+      btn.textContent = 'Request my ZIP codes';
       submitting = false;
     }
   });
