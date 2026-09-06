@@ -43,6 +43,7 @@ Rule: work top to bottom. Mark `[x]` when done. Next unchecked item is the next 
 - [ ] 21. At 50+ leads/month: request network API access; move to n8n push (own every lead)
 - [ ] 22. Add HVAC campaign, then Solar, each with its own cost-per-lead check
 - [ ] 23. AdSense on thank-you and info pages only (never in funnel)
+- [ ] 24a. Direct-buyer prepay: Stripe Payment Links for lead packs (10 pool $450, 10 HVAC $600, 10 solar $900) linked from /pros; on payment, record buyer zips and lead balance in ProInquiries; n8n emails each matching lead to the buyer and decrements balance; at zero, send top-up email with the link.
 - [ ] 24. Route direct-buyer zips (from For Pros page) first, remainder to network
 
 ## Notes / decisions
