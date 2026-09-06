@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rate Your Estimate — TrueHomeQuote</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#FBF7F1">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260906e">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="/">
+        <span class="mark" style="width:32px;height:32px;background:#0E7C86">
+  <span style="position:absolute;left:9px;top:17px;width:9px;height:4px;border-radius:2px;background:#fff;transform:rotate(45deg)"></span>
+  <span style="position:absolute;left:13px;top:13px;width:13px;height:4px;border-radius:2px;background:#fff;transform:rotate(-48deg)"></span>
+  <span style="position:absolute;right:-1px;top:-1px;width:11px;height:11px;border-radius:50%;background:#F2A33C;border:2px solid #FBF7F1"></span>
+</span>
+        <span>TrueHomeQuote</span>
+      </a>
+      <a class="pros-link" href="/pros">For Pros</a>
+    </div>
+  </header>
+
+  <main id="app">
+    <noscript><p class="note">Please enable JavaScript to leave a comment.</p></noscript>
+
+    <!-- Reached from the star links in the estimate email: the n8n "THQ - Review Rating" webhook
+         records the rating, then redirects here with ?lead=&r=&t=. The optional comment is POSTed
+         back to the same workflow (COMMENT_URL below), which stores it on the Reviews row. -->
+    <section class="screen result review-page" id="s-form">
+      <p class="eyebrow"><span class="dots" aria-hidden="true"><i></i><i></i></span> Thanks for the rating</p>
+      <h1 class="q">You rated your estimate <span class="review-stars review-stars-lg" id="stars" aria-hidden="true"></span><span class="sr-only" id="stars-sr"></span></h1>
+      <p class="sub">One optional question: anything you'd like to share about your experience? A sentence is plenty.</p>
+      <form id="comment-form" novalidate>
+        <div class="field">
+          <label for="comment">Your comment (optional)</label>
+          <textarea id="comment" name="comment" maxlength="600" rows="4" placeholder="e.g. The range was spot on, and two pros called within the hour."></textarea>
+          <p class="hint">Up to 600 characters. We may publish your first name, city, and comment on truehomequote.com.</p>
+        </div>
+        <p class="error" id="form-error" role="alert"></p>
+        <button class="btn primary" type="submit" id="submit">Send comment</button>
+        <p class="fine"><a href="/">Skip and go to truehomequote.com</a></p>
+      </form>
+    </section>
+
+    <section class="screen result review-page" id="s-done">
+      <h1 class="q">Thank you. That helps the next homeowner.</h1>
+      <p class="sub">Your comment is in. If we publish it, we show only your first name and city.</p>
+      <a class="btn primary inline" href="/">Back to truehomequote.com &rarr;</a>
+    </section>
+
+    <section class="screen result review-page" id="s-invalid">
+      <h1 class="q">That link isn't valid.</h1>
+      <p class="sub">Use the stars in your estimate email, or just reply to it. We read every message.</p>
+      <a class="btn primary inline" href="/">Back to truehomequote.com &rarr;</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <nav class="footer-links">
+        <a href="/cost/">Cost Guides</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/privacy.html#do-not-sell">Do Not Sell or Share My Personal Information</a>
+      </nav>
+      <p>&copy; 2026 DV8 Solutions LLC</p>
+    </div>
+  </footer>
+
+  <script>
+  (function () {
+    'use strict';
+    var COMMENT_URL = 'https://n8n.dv8solutions.com/webhook/thq-review-comment-5e8f0c3d'; // n8n "THQ - Review Rating" (POST entry)
+    var $ = function (id) { return document.getElementById(id); };
+    var p = new URLSearchParams(location.search);
+    var lead = parseInt(p.get('lead'), 10);
+    var r = parseInt(p.get('r'), 10);
+    var t = String(p.get('t') || '').toLowerCase();
+    var valid = lead > 0 && r >= 1 && r <= 5 && /^[a-f0-9]{20}$/.test(t) && !p.get('err');
+    if (!valid) { $('s-invalid').classList.add('active'); return; }
+
+    $('stars').textContent = '★★★★★'.slice(0, r) + '☆☆☆☆☆'.slice(0, 5 - r);
+    $('stars-sr').textContent = r + ' out of 5 stars';
+    $('s-form').classList.add('active');
+
+    var busy = false;
+    $('comment-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (busy) return;
+      var comment = $('comment').value.replace(/\s+/g, ' ').trim();
+      if (!comment) { $('form-error').textContent = 'Type a comment, or use the skip link below.'; return; }
+      busy = true; $('submit').disabled = true; $('submit').textContent = 'Sending…'; $('form-error').textContent = '';
+      var ctrl = ('AbortController' in window) ? new AbortController() : null;
+      var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 8000) : null;
+      fetch(COMMENT_URL, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ lead_id: lead, rating: r, token: t, comment: comment }),
+        signal: ctrl ? ctrl.signal : undefined
+      })
+        .then(function (res) { return res.json().catch(function () { return {}; }).then(function (j) { return res.ok && j.ok !== false; }); })
+        .then(function (ok) {
+          if (!ok) throw new Error('rejected');
+          $('s-form').classList.remove('active'); $('s-done').classList.add('active'); window.scrollTo(0, 0);
+        })
+        .catch(function () {
+          $('form-error').textContent = "Couldn't send that. Please try again, or reply to your estimate email.";
+          $('submit').disabled = false; $('submit').textContent = 'Send comment'; busy = false;
+        })
+        .then(function () { if (timer) clearTimeout(timer); });
+    });
+  })();
+  </script>
+</body>
+</html>

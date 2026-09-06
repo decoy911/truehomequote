@@ -465,3 +465,75 @@ function init() {
   if (preselect) goTo(2);
 }
 init();
+
+/* ==================== HOMEOWNER REVIEWS (marquee) ==================== */
+// /reviews.json is written daily by n8n ("THQ - Reviews Export") from approved rows in the
+// NocoDB Reviews table. Entries: { name, city, trade, rating, quote }. The strip stays hidden
+// unless the file has at least REVIEWS_MIN usable entries.
+const REVIEWS_URL = '/reviews.json';
+const REVIEWS_MIN = 3;
+
+function normalizeReview(x) {
+  if (!x || typeof x !== 'object') return null;
+  const rating = Math.round(Number(x.rating));
+  const name = String(x.name || '').trim().slice(0, 40);
+  if (!name || !(rating >= 1 && rating <= 5)) return null;
+  return {
+    name,
+    city: String(x.city || '').trim().slice(0, 40),
+    trade: String(x.trade || '').trim().slice(0, 20),
+    rating,
+    quote: String(x.quote || '').replace(/\s+/g, ' ').trim().slice(0, 280)
+  };
+}
+
+function reviewCard(r) {
+  const li = document.createElement('li');
+  li.className = 'review-card';
+  const stars = document.createElement('div');
+  stars.className = 'review-stars';
+  stars.setAttribute('role', 'img');
+  stars.setAttribute('aria-label', r.rating + ' out of 5 stars');
+  stars.textContent = '★★★★★'.slice(0, r.rating) + '☆☆☆☆☆'.slice(0, 5 - r.rating);
+  li.appendChild(stars);
+  if (r.quote) {
+    const q = document.createElement('p');
+    q.className = 'review-quote';
+    q.textContent = '“' + r.quote + '”';
+    li.appendChild(q);
+  }
+  const meta = document.createElement('p');
+  meta.className = 'review-meta';
+  const who = document.createElement('b');
+  who.textContent = r.name;
+  meta.appendChild(who);
+  meta.appendChild(document.createTextNode([r.city, r.trade].filter(Boolean).map((s) => ' · ' + s).join('')));
+  li.appendChild(meta);
+  return li;
+}
+
+function loadReviews() {
+  const section = document.getElementById('reviews');
+  const track = document.getElementById('reviews-track');
+  if (!section || !track || typeof fetch !== 'function') return;
+  fetch(REVIEWS_URL, { credentials: 'omit' })
+    .then((res) => (res.ok ? res.json() : []))
+    .then((data) => {
+      const items = (Array.isArray(data) ? data : []).map(normalizeReview).filter(Boolean);
+      if (items.length < REVIEWS_MIN) return;
+      track.textContent = '';
+      // Two identical groups; the track animates from 0 to -50%, so the loop is seamless.
+      // The second group is decorative (aria-hidden) and is hidden under prefers-reduced-motion.
+      for (let copy = 0; copy < 2; copy++) {
+        const group = document.createElement('ul');
+        group.className = 'marquee-group';
+        if (copy) group.setAttribute('aria-hidden', 'true');
+        items.forEach((r) => group.appendChild(reviewCard(r)));
+        track.appendChild(group);
+      }
+      track.style.setProperty('--marquee-dur', Math.max(24, items.length * 7) + 's');
+      section.hidden = false;
+    })
+    .catch(() => { /* no reviews file yet, or it is unreadable: the strip stays hidden */ });
+}
+loadReviews();

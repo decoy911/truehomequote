@@ -10,8 +10,8 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260906d">
-  <script src="app.js?v=20260906d" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20260906e">
+  <script src="app.js?v=20260906e" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -140,6 +140,22 @@
             </div>
           </div>
           <p class="card-foot">Your answers stay in your browser until you hit submit.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Homeowner reviews. app.js fills this from /reviews.json (approved rows from the NocoDB
+         Reviews table, exported daily by n8n "THQ - Reviews Export") and un-hides it only when
+         the file has at least 3 usable entries. Scrolls right-to-left, pauses on hover/focus,
+         and becomes a plain horizontal scroller under prefers-reduced-motion. -->
+    <section class="reviews" id="reviews" hidden aria-labelledby="reviews-h2">
+      <div class="wrap">
+        <div class="reviews-head">
+          <h2 class="reviews-h2" id="reviews-h2">What homeowners say about their estimate</h2>
+          <p class="reviews-sub">Ratings come from the email we send after every estimate.</p>
+        </div>
+        <div class="marquee">
+          <div class="marquee-track" id="reviews-track"></div>
         </div>
       </div>
     </section>

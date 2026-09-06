@@ -267,3 +267,29 @@ select[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: var(-
 .lead-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%,200px),1fr)); gap: 10px; margin: 20px 0 0; padding: 0; list-style: none; }
 .lead-fields li { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 12px; background: var(--card); border: 1px solid var(--line); font-size: 14px; font-weight: 600; }
 .contact-line { margin: 28px 0 0; font-size: 15px; color: var(--body); }
+
+/* Homeowner reviews strip (index). Populated by app.js from /reviews.json; hidden when < 3 entries. */
+.reviews { padding: 0 0 clamp(36px,5vw,60px); }
+.reviews-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 18px; margin-bottom: 18px; }
+.reviews-h2 { margin: 0; font-family: var(--display); font-weight: 800; font-size: clamp(22px,3vw,30px); line-height: 1.1; letter-spacing: -.025em; }
+.reviews-sub { margin: 0; font-size: 14px; color: var(--muted); }
+.marquee { position: relative; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.marquee-track { display: flex; width: max-content; padding: 4px 0 10px; animation: thq-marquee var(--marquee-dur, 40s) linear infinite; will-change: transform; }
+.marquee:hover .marquee-track, .marquee:focus-within .marquee-track { animation-play-state: paused; }
+.marquee-group { display: flex; flex: none; gap: 14px; margin: 0; padding: 0 14px 0 0; list-style: none; }
+.review-card { flex: none; display: flex; flex-direction: column; gap: 10px; width: min(320px, 78vw); padding: 18px 20px; border-radius: 18px; background: var(--card); border: 1px solid var(--line); box-shadow: 0 1px 2px rgba(11,27,43,.04), 0 12px 28px -18px rgba(11,27,43,.18); }
+.review-stars { color: var(--amber); font-size: 15px; letter-spacing: .06em; line-height: 1; white-space: nowrap; }
+.review-stars-lg { font-size: .85em; letter-spacing: .04em; }
+.review-quote { margin: 0; font-size: 14.5px; line-height: 1.55; color: var(--ink); display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.review-meta { margin: 0; font-size: 12.5px; font-weight: 600; color: var(--muted); }
+.review-meta b { color: var(--ink); }
+@keyframes thq-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .marquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; scrollbar-width: thin; }
+  .marquee-track { animation: none; }
+  .marquee-group[aria-hidden="true"] { display: none; }
+}
+
+/* Review comment page (/review, reached from the estimate email's star links) */
+.review-page form { margin-top: 22px; }
+.review-page .eyebrow { margin-bottom: 14px; }
