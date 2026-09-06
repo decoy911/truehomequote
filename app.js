@@ -84,6 +84,7 @@ let state = Object.assign({}, EMPTY_STATE);
 let currentStep = 1;
 let submitted = false;
 let submitting = false;
+let rendered = false; // first render must not scroll the page
 
 const $ = (id) => document.getElementById(id);
 
@@ -202,7 +203,8 @@ function render(step) {
   $('progress').setAttribute('aria-valuenow', String(step));
   $('step-label').textContent = 'Step ' + step + ' of ' + TOTAL_STEPS;
 
-  window.scrollTo(0, 0);
+  if (rendered) $('quote').scrollIntoView(); // card top under the sticky header (scroll-margin-top in styles.css)
+  rendered = true;
   const focusTarget = step === 6 ? $('zip') : step === 7 ? $('first-name') : screen.querySelector('h1');
   if (focusTarget) {
     if (focusTarget.tagName === 'H1') focusTarget.setAttribute('tabindex', '-1');
@@ -460,6 +462,6 @@ function init() {
   history.replaceState({ step }, '');
   bindEvents();
   render(step);
-  if (preselect) { goTo(2); $('quote').scrollIntoView(); }
+  if (preselect) goTo(2);
 }
 init();

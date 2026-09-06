@@ -183,6 +183,17 @@ input[aria-invalid="true"] { border-color: var(--error); }
 .footer-links a { color: var(--muted); }
 .site-footer p { margin: 0; font-size: 13px; color: var(--faint); }
 
+/* Mobile: the funnel card stacks under the hero copy, so trim the hero to headline + one line
+   and keep step 1's buttons above the fold. Cost/pros pages (.page-hero) are unaffected. */
+#quote { scroll-margin-top: 72px; }
+@media (max-width: 767px) {
+  .hero:not(.page-hero) { padding-top: 14px; }
+  .hero:not(.page-hero) .hero-grid { gap: 18px; }
+  .hero:not(.page-hero) .eyebrow, .hero:not(.page-hero) .chips, .hero:not(.page-hero) .stats, .hero-more { display: none; }
+  .hero:not(.page-hero) .hero-h1 { margin-top: 0; font-size: clamp(30px, 8.5vw, 36px); }
+  .hero:not(.page-hero) .hero-sub { margin-top: 8px; font-size: 16px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
